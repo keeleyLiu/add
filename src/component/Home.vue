@@ -5,7 +5,7 @@
           <el-button type="primary" round size="small" icon="el-icon-plus">新增</el-button>
         </div>
         <el-divider></el-divider>
-      <div class="grid-content bg-purple" v-for="(scenes, index) in list" :key="index">
+      <div class="grid-content bg-purple" v-for="(scenes, index) in list" :key="scenes.id">
         <div v-on:click="change_scenes(index)">
           <div class="title_head" >{{scenes.title}}</div>
           <div class="title_sub">{{scenes.context}}</div>
@@ -73,7 +73,7 @@ export default {
     },
     computed:{
         current_scenes(){
-            return this.list[this.current_scenes_index]
+            return this.list[this.current_scenes_index] || {}
         }
     },
     methods: {
