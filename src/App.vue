@@ -1,14 +1,13 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div>
-      <el-button @click="startHacking">Start</el-button>
-    </div>
+    <Home/>
   </div>
 </template>
 
 <script>
+import Home  from "./component/Home.vue"
 export default {
+  components : {Home},
   methods: {
     startHacking () {
       this.$notify({
