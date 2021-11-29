@@ -1,0 +1,33 @@
+{
+    "list": [
+        {
+            "title": "场景1",
+            "context": "企业网银-待办中心-管理员",
+            "scope": "企业网银-待办中心-管理员",
+            "standard": "管理员卡片上显示的数量与实际查询出来的代办数量不一致",
+            "solution": "确认查询正常，如果不正常联系管理员如果不正常联系管理员如果不正常联系管理员如果不正常联系管理员如果不正常联系管理员如果不正常联系管理员",
+            "activities": [
+                {
+                    "time": "3",
+                    "target": "联系运维人员查询uc库数据",
+                    "content": "select * from user_auth_task t where t.cust_id = '待提供' and t.user_id = '授权用户id'; -- 查询代班"
+                },
+                {
+                    "time": "3",
+                    "target": "联系运维人员查询uc库数据",
+                    "content": "select * from user_auth_task t where t.cust_id = '待提供' and t.user_id = '授权用户id'; -- 查询代班"
+                },
+                {
+                    "time": "3",
+                    "target": "联系运维人员查询uc库数据",
+                    "content": "select * from user_auth_task t where t.cust_id = '待提供' and t.user_id = '授权用户id'; -- 查询代班"
+                },
+                {
+                    "time": "3",
+                    "target": "联系运维人员查询uc库数据",
+                    "content": "select * from user_auth_task t where t.cust_id = '待提供' and t.user_id = '授权用户id'; -- 查询代班"
+                }
+            ]
+        }
+    ]
+}
