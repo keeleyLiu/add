@@ -21,7 +21,7 @@
         <div>应急恢复步骤</div>
         <el-row type="flex" v-for="(activity, index) in scenes.activities" :key="index">
             <el-col :span="4">
-                步骤 {{index+1}}
+                步骤 {{index+1}} <i class="el-icon-delete" @click ="remove_activiti(index)"></i>
             </el-col>
             <el-col>
                 <el-row type="flex">
@@ -76,6 +76,10 @@
           this.dialogVisible = false
           this.$emit("saveScenes",this.scenes)
           this.scenes = {activities:[]}
+      },
+      remove_activiti(index){
+          let newActivities = this.scenes.activities.filter((_,idx)=>idx!=index);
+          this.scenes = {...this.scenes, activities:newActivities }
       }
     }
   };
