@@ -112,6 +112,7 @@ export default {
             this.$confirm('确认删除？')
             .then(_ => {
                 this.list = [...this.list.filter(it=>it.id!=this.current_scenes.id)]
+                this.change_scenes(0)
             }).catch(_ => {});
         }
     }

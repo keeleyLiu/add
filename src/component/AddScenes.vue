@@ -1,5 +1,5 @@
 <template>
-    <el-dialog title="新增场景" :visible.sync="dialogVisible" width="80%" :before-close="handleClose">
+    <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="80%" :before-close="handleClose">
         <div>
             <el-row type="flex">
                 <el-col :span="4">场景描述</el-col>
@@ -52,8 +52,13 @@
     data() {
       return {
         dialogVisible: false,
-        scenes: {activities:[]}
+        scenes: {activities:[]},
       };
+    },
+    computed:{
+        dialogTitle(){
+            return this.scenes.id ? "修改场景": "新增场景"
+        }
     },
     methods: {
       showDialog(payload){
