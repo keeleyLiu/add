@@ -3,7 +3,7 @@
   <el-row type="flex" class="row-bg">
     <el-col :span="6" class="my-left">
         <div>
-          <el-button type="primary" round size="small" icon="el-icon-plus" @click="add_scenes">新增</el-button>
+            <el-button type="primary" round size="small" icon="el-icon-plus" @click="add_scenes">新增</el-button>
         </div>
         <el-divider></el-divider>
       <div class="grid-content bg-purple" v-for="(scenes, index) in list" :key="scenes.id" :class="current_scenes_index == index ? 'isActive' : ''">
@@ -15,72 +15,80 @@
       </div>
     </el-col>
     <el-col>
-    <div v-if="list == undefined ||list == null || list.length <= 0 " style="text-align:center">
-        暂无数据
-    </div>
-      <div class="grid-content bg-purple-light" v-else>
-        <el-row type="flex">
-            <el-col>
-                <div class="content_main_title">场景 {{current_scenes_index+1}}</div>
-            </el-col>
-            <el-col :span="4">
-                <el-button type="danger" icon="el-icon-delete" size="mini" circle @click="remove_scenes"></el-button>
-                <el-button type="primary" icon="el-icon-edit" size="mini" circle @click="edit_scenes"></el-button>
-            </el-col>
-        </el-row>
-        <el-divider></el-divider>
-        <el-row class="content_main_detail" type="flex">
-            <el-col :span="8" class="content_main_k">场景描述：</el-col>
-            <el-col class="content_main_v">{{current_scenes.context}}</el-col>
-        </el-row>
-        <el-row class="content_main_detail" type="flex">
-            <el-col :span="8" class="content_main_k">适用范围：</el-col>
-            <el-col class="content_main_v">{{current_scenes.scope}}</el-col>
-        </el-row>
-        <el-row class="content_main_detail" type="flex">
-            <el-col :span="8" class="content_main_k">判断标准：</el-col>
-            <el-col class="content_main_v">{{current_scenes.standard}}</el-col>
-        </el-row>
-        <el-row class="content_main_detail" type="flex">
-            <el-col :span="8" class="content_main_k">解决方案：</el-col>
-            <el-col class="content_main_v">{{current_scenes.solution}}</el-col>
-        </el-row>
-        <el-row class="content_main_detail" type="flex">
-            <el-col :span="8" class="content_main_k">应急操作恢复步骤：</el-col>
-            <el-col class="content_main_v">
-                <el-row type="flex">
-                    <el-col :span="12">
-                    <el-timeline>
-                        <el-timeline-item 
-                        v-for="(activity, index) in current_scenes.activities"
-                        :key="index"
-                        :hide-timestamp=true>
-                            <div @click="show_activity(index)" :class="current_activity_index == index ? 'isActive' : ''">
-                                <div>步骤{{index+1}}</div>
-                                <div>点击展示当前步骤</div>
-                            </div>
-                        </el-timeline-item>
-                    </el-timeline>
-                    </el-col>
-                    <el-col v-if="current_activity">
-                         <el-row class="content_main_detail" type="flex">
-                            <el-col :span="8" class="content_main_k">耗时/min</el-col>
-                            <el-col class="content_main_v">{{current_activity.time}}</el-col>
-                        </el-row>
-                        <el-row class="content_main_detail" type="flex">
-                            <el-col :span="8" class="content_main_k">操作内容及目标</el-col>
-                            <el-col class="content_main_v">{{current_activity.target}}</el-col>
-                        </el-row>
-                        <el-row class="content_main_detail" type="flex">
-                            <el-col :span="8" class="content_main_k">执行动作/命令</el-col>
-                            <el-col class="content_main_v">{{current_activity.content}}</el-col>
-                        </el-row>
-                    </el-col>
-                </el-row>
-            </el-col>
-        </el-row>
-      </div>
-    </el-col>
+        <div v-if="list == undefined ||list == null || list.length <= 0 " style="text-align:center">
+            暂无数据
+        </div>
+        <div class="grid-content bg-purple-light" v-else>
+            <el-row type="flex">
+                <el-col>
+                    <div class="content_main_title">场景 {{current_scenes_index+1}}</div>
+                </el-col>
+                <el-col :span="4">
+                    <el-button type="danger" icon="el-icon-delete" size="mini" circle @click="remove_scenes"></el-button>
+                    <el-button type="primary" icon="el-icon-edit" size="mini" circle @click="edit_scenes"></el-button>
+                </el-col>
+            </el-row>
+            <el-divider></el-divider>
+            <el-row class="content_main_detail" type="flex">
+                <el-col :span="8" class="content_main_k">场景描述：</el-col>
+                <el-col class="content_main_v">{{current_scenes.context}}</el-col>
+            </el-row>
+            <el-row class="content_main_detail" type="flex">
+                <el-col :span="8" class="content_main_k">适用范围：</el-col>
+                <el-col class="content_main_v">{{current_scenes.scope}}</el-col>
+            </el-row>
+            <el-row class="content_main_detail" type="flex">
+                <el-col :span="8" class="content_main_k">判断标准：</el-col>
+                <el-col class="content_main_v">{{current_scenes.standard}}</el-col>
+            </el-row>
+            <el-row class="content_main_detail" type="flex">
+                <el-col :span="8" class="content_main_k">解决方案：</el-col>
+                <el-col class="content_main_v">{{current_scenes.solution}}</el-col>
+            </el-row>
+            <el-row class="content_main_detail" type="flex">
+                <el-col :span="8" class="content_main_k">应急操作恢复步骤：</el-col>
+                <el-col class="content_main_v">
+                    <el-row type="flex">
+                        <el-col :span="12">
+                            <el-steps direction="vertical" :active="current_activity_index+1" space="100px">
+                                <el-step 
+                                :title="'步骤'+(index+1)" 
+                                v-for="(activity, index) in current_scenes.activities" :key="index" 
+                                @click.native="show_activity(index)"
+                                :status="current_activity_index == index ? 'process' : 'wait'"
+                                description="点击展示当前步骤" />
+                            </el-steps>
+                            <!-- <el-timeline>
+                                <el-timeline-item 
+                                v-for="(activity, index) in current_scenes.activities"
+                                :key="index"
+                                :hide-timestamp=true>
+                                    <div @click="show_activity(index)" :class="current_activity_index == index ? 'isActive' : ''">
+                                        <div>步骤{{index+1}}</div>
+                                        <div>点击展示当前步骤</div>
+                                    </div>
+                                </el-timeline-item>
+                            </el-timeline> -->
+                        </el-col>
+                        <el-col v-if="current_activity">
+                            <el-row class="content_main_detail" type="flex">
+                                <el-col :span="8" class="content_main_k">耗时/min</el-col>
+                                <el-col class="content_main_v">{{current_activity.time}}</el-col>
+                            </el-row>
+                            <el-row class="content_main_detail" type="flex">
+                                <el-col :span="8" class="content_main_k">操作内容及目标</el-col>
+                                <el-col class="content_main_v">{{current_activity.target}}</el-col>
+                            </el-row>
+                            <el-row class="content_main_detail" type="flex">
+                                <el-col :span="8" class="content_main_k">执行动作/命令</el-col>
+                                <el-col class="content_main_v">{{current_activity.content}}</el-col>
+                            </el-row>
+                        </el-col>
+                    </el-row>
+                </el-col>
+            </el-row>
+        </div>
+        </el-col>
   </el-row>
   <AddScenes ref="addScenesView" @saveScenes='save_scenes'/>
   </div>
@@ -121,7 +129,7 @@ export default {
         add_scenes: function(){
             this.$refs.addScenesView.showDialog();
         },
-        edit_scenes: function(index){
+        edit_scenes: function(){
             this.$refs.addScenesView.showDialog(this.current_scenes);
         },
         save_scenes: function(scenes){
