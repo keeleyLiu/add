@@ -75,6 +75,7 @@
       commit(){
           this.dialogVisible = false
           this.$emit("saveScenes",this.scenes)
+          this.scenes = {activities:[]}
       }
     }
   };

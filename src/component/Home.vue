@@ -6,7 +6,7 @@
           <el-button type="primary" round size="small" icon="el-icon-plus" @click="add_scenes">新增</el-button>
         </div>
         <el-divider></el-divider>
-      <div class="grid-content bg-purple" v-for="(scenes, index) in list" :key="scenes.id">
+      <div class="grid-content bg-purple" v-for="(scenes, index) in list" :key="scenes.id" :class="current_scenes_index == index ? 'isActive' : ''">
         <div v-on:click="change_scenes(index)">
           <div class="title_head" >场景 {{index+1}}</div>
           <div class="title_sub">{{scenes.context}}</div>
@@ -48,17 +48,35 @@
         <el-row class="content_main_detail" type="flex">
             <el-col :span="8" class="content_main_k">应急操作恢复步骤：</el-col>
             <el-col class="content_main_v">
-                <div class="block">
+                <el-row type="flex">
+                    <el-col :span="12">
                     <el-timeline>
                         <el-timeline-item 
                         v-for="(activity, index) in current_scenes.activities"
                         :key="index"
                         :hide-timestamp=true>
-                        <div>步骤{{index+1}}</div>
-                        <div>点击展示当前步骤</div>
+                            <div @click="show_activity(index)" :class="current_activity_index == index ? 'isActive' : ''">
+                                <div>步骤{{index+1}}</div>
+                                <div>点击展示当前步骤</div>
+                            </div>
                         </el-timeline-item>
                     </el-timeline>
-                </div>
+                    </el-col>
+                    <el-col v-if="current_activity">
+                         <el-row class="content_main_detail" type="flex">
+                            <el-col :span="8" class="content_main_k">耗时/min</el-col>
+                            <el-col class="content_main_v">{{current_activity.time}}</el-col>
+                        </el-row>
+                        <el-row class="content_main_detail" type="flex">
+                            <el-col :span="8" class="content_main_k">操作内容及目标</el-col>
+                            <el-col class="content_main_v">{{current_activity.target}}</el-col>
+                        </el-row>
+                        <el-row class="content_main_detail" type="flex">
+                            <el-col :span="8" class="content_main_k">执行动作/命令</el-col>
+                            <el-col class="content_main_v">{{current_activity.content}}</el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
             </el-col>
         </el-row>
       </div>
@@ -80,17 +98,25 @@ export default {
     data() {
         return {
             current_scenes_index:0,
+            current_activity_index:0,
             ...json_data
         };
     },
     computed:{
         current_scenes(){
             return this.list[this.current_scenes_index] || {}
+        },
+        current_activity(){
+            return this.current_scenes.activities[this.current_activity_index]
         }
     },
     methods: {
         change_scenes: function(index){
             this.current_scenes_index = index;
+            this.current_activity_index = 0;
+        },
+        show_activity: function(index){
+            this.current_activity_index = index
         },
         add_scenes: function(){
             this.$refs.addScenesView.showDialog();
@@ -119,6 +145,9 @@ export default {
 };
 </script>
 <style scoped>
+.isActive{
+    background-color: rgb(185, 182, 182);
+}
 .my-left {
   padding: 0px 10px;
   text-align: left;
