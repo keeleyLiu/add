@@ -63,7 +63,7 @@
     methods: {
       showDialog(payload){
           this.dialogVisible = true;
-          this.scenes = {...payload} || {activities:[]}
+          if(payload) this.scenes = {...payload}
       },
       add_step(){
           this.scenes.activities.push({})
