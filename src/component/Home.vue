@@ -98,7 +98,7 @@
 </template>
 <script>
 var json_data = require('../data/date.json')
-let id = json_data.length;
+let id = json_data.list.length;
 function genId() {
     return ++id;
 }
