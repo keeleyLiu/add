@@ -15,6 +15,8 @@
       </div>
     </el-col>
     <el-col>
+        <el-card>
+
         <div v-if="list == undefined ||list == null || list.length <= 0 " style="text-align:center">
             暂无数据
         </div>
@@ -88,6 +90,7 @@
                 </el-col>
             </el-row>
         </div>
+        </el-card>
         </el-col>
   </el-row>
   <AddScenes ref="addScenesView" @saveScenes='save_scenes'/>
